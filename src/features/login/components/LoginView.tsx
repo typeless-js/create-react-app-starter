@@ -52,7 +52,7 @@ export const LoginView = () => {
           <Title>Please sign in</Title>
           {error && <Alert>{error}</Alert>}
           <ReduxInput name="username" label="Username" />
-          <ReduxInput name="password" label="Password" />
+          <ReduxInput name="password" label="Password" type="password" />
           <Button large block loading={isLoading}>
             Sign in
           </Button>

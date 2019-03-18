@@ -10,7 +10,9 @@
     "semicolon": false,
     "no-var-requires": false,
     "object-literal-sort-keys": false,
-    "interface-name": false
+    "interface-name": false,
+    "align": false,
+    "trailing-comma": false
   },
   "rulesDirectory": []
 }

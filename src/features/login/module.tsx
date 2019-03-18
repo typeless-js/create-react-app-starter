@@ -9,9 +9,9 @@ import { LoginActions, LoginState, MODULE } from './interface';
 import { LoginFormActions, useLoginForm } from './login-form';
 
 // --- Epic ---
-export const epic = createEpic(MODULE).on(
-  LoginFormActions.setSubmitSucceeded,
-  (_, { getState }) => {
+export const epic = createEpic(MODULE)
+  .on(LoginActions.$mounted, () => LoginFormActions.reset())
+  .on(LoginFormActions.setSubmitSucceeded, (_, { getState }) => {
     const { values } = getState().loginForm;
     return Rx.concatObs(
       Rx.of(LoginActions.setLoading(true)),
@@ -23,12 +23,11 @@ export const epic = createEpic(MODULE).on(
             RouterActions.push('/'),
           ]);
         }),
-        Rx.catchLog(e => Rx.of(LoginActions.setError(e.message))),
+        Rx.catchLog(e => Rx.of(LoginActions.setError(e.message)))
       ),
-      Rx.of(LoginActions.setLoading(false)),
+      Rx.of(LoginActions.setLoading(false))
     );
-  },
-);
+  });
 
 // --- Reducer ---
 const initialState: LoginState = {

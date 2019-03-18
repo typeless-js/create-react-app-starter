@@ -5,14 +5,11 @@ import { RouteConfig } from 'src/types';
 import { createActions } from 'typeless';
 
 // --- Constants ---
-export const MODULE = 'Login';
+export const MODULE = 'login';
 
 // --- Actions ---
 export const LoginActions = createActions(MODULE, {
-  mounted: null,
-  loaded: null,
-  unloaded: null,
-  replaced: null,
+  $mounted: null,
   setLoading: (isLoading: boolean) => ({ payload: { isLoading } }),
   setError: (error: string) => ({ payload: { error } }),
 });
