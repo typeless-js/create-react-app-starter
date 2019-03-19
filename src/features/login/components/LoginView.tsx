@@ -11,6 +11,7 @@ import { LoginFormActions, LoginFormProvider } from '../login-form';
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -32,6 +33,11 @@ const Title = styled.h1`
   margin-bottom: 16px;
   font-weight: 400;
   text-align: center;
+`;
+
+const Info = styled.div`
+  text-align: center;
+  margin-top: 20px;
 `;
 
 export const LoginView = () => {
@@ -56,6 +62,7 @@ export const LoginView = () => {
           <Button large block loading={isLoading}>
             Sign in
           </Button>
+          <Info>Log in as user/pass</Info>
         </Form>
       </LoginFormProvider>
     </Wrapper>
