@@ -6,10 +6,9 @@ export const MODULE = 'global';
 
 // --- Actions ---
 export const GlobalActions = createActions(MODULE, {
-  loaded: null,
-  unloaded: null,
-  replaced: null,
-  loggedIn: (user: User) => ({ payload: { user } }),
+  $mounted: null,
+  logout: null,
+  loggedIn: (user: User | null) => ({ payload: { user } }),
 });
 
 // --- Types ---

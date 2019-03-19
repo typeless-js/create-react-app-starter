@@ -4,15 +4,15 @@ import { RouteConfig } from 'src/types';
 import { createActions } from 'typeless';
 
 // --- Constants ---
-export const MODULE = 'sample1';
+export const MODULE = 'sample2';
 
 // --- Actions ---
-export const Sample1Actions = createActions(MODULE, {});
+export const Sample2Actions = createActions(MODULE, {});
 
 // --- Routing ---
 const ModuleLoader = React.lazy(() => import('./module'));
 
-const Sample1Route = () => (
+const Sample2Route = () => (
   <DashboardSuspense>
     <ModuleLoader />
   </DashboardSuspense>
@@ -21,17 +21,17 @@ const Sample1Route = () => (
 export const routeConfig: RouteConfig = {
   type: 'route',
   auth: true,
-  path: '/',
-  component: <Sample1Route />,
+  path: '/sample2',
+  component: <Sample2Route />,
 };
 
 // --- Types ---
-export interface Sample1State {
+export interface Sample2State {
   foo: string;
 }
 
 declare module 'typeless/types' {
   export interface DefaultState {
-    sample1: Sample1State;
+    sample2: Sample2State;
   }
 }

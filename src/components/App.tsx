@@ -1,7 +1,9 @@
 import React from 'react';
+import * as R from 'remeda';
 import { useGlobalModule } from 'src/features/global/module';
 import { useRouterModule } from 'src/features/router/module';
 import { createGlobalStyle } from 'styled-components';
+import { useMappedState } from 'typeless';
 import { RouteResolver } from './RouteResolver';
 
 const GlobalStyle = createGlobalStyle`
@@ -9,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
 
-  html, body {
+  html, body, #app {
     height: 100%;
   }
 
@@ -27,9 +29,12 @@ const GlobalStyle = createGlobalStyle`
 export const App = () => {
   useRouterModule();
   useGlobalModule();
+  const { isLoaded } = useMappedState(state =>
+    R.pick(state.global, ['isLoaded'])
+  );
   return (
     <>
-      <RouteResolver />
+      {isLoaded && <RouteResolver />}
       <GlobalStyle />
     </>
   );

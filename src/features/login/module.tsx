@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Rx from 'src/rx';
 import { login } from 'src/services/API';
+import { setAccessToken } from 'src/services/Storage';
 import { batchUpdate, createEpic, createReducer, useModule } from 'typeless';
 import { GlobalActions } from '../global/interface';
 import { RouterActions } from '../router/interface';
@@ -18,6 +19,7 @@ export const epic = createEpic(MODULE)
       Rx.of(LoginActions.setError('')),
       login(values.username, values.password).pipe(
         Rx.map(({ user, token }) => {
+          setAccessToken(token);
           return batchUpdate([
             GlobalActions.loggedIn(user),
             RouterActions.push('/'),

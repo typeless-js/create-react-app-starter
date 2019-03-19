@@ -1,12 +1,16 @@
 import * as Rx from 'src/rx';
 
+const sampleUser = { id: 'a', username: 'user' };
+
 export const login = (username: string, password: string) =>
-  Rx.of(null).pipe(
+  Rx.of({ user: sampleUser, token: '123' }).pipe(
     Rx.delay(300),
-    Rx.mergeMap(() => {
+    Rx.map(user => {
       if (username === 'user' && password === 'pass') {
-        return Rx.of({ user: { id: 'a', username: 'user' }, token: '123' });
+        return user;
       }
       throw new Error('Invalid username or password');
-    }),
+    })
   );
+
+export const getUser = () => Rx.of(sampleUser).pipe(Rx.delay(300));

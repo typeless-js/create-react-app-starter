@@ -2,8 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Spinner } from './Spinner';
 
-interface ButtonProps {
-  className?: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   block?: boolean;
   large?: boolean;
@@ -11,9 +10,9 @@ interface ButtonProps {
 }
 
 const _Button = (props: ButtonProps) => {
-  const { className, children, loading } = props;
+  const { children, large, block, loading, disabled, ...rest } = props;
   return (
-    <button className={className} disabled={loading}>
+    <button {...rest} disabled={disabled || loading}>
       {loading && <Spinner />}
       {children}
     </button>

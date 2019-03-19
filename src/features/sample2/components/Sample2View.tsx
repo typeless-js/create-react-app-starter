@@ -2,14 +2,11 @@ import React from 'react';
 import { Dashboard } from 'src/components/Dashboard';
 import { Link } from 'src/components/Link';
 
-export const Sample1View = () => {
+export const Sample2View = () => {
   return (
     <Dashboard>
-      Feature sample1
-      <br />
-      <Link href="/sample2">
-        Go to sample feature 2 (set "slow 3G" to see a spinner)
-      </Link>
+      Feature sample2 <br />
+      <Link href="/">Go to sample feature 1</Link>
     </Dashboard>
   );
 };
