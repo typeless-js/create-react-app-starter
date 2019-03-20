@@ -44,7 +44,7 @@ export const Button = styled(_Button)`
   &&&:disabled {
     background-color: #007bff;
     border-color: #007bff;
-    opacity: .65;
+    opacity: 0.65;
   }
 
   &:not(:disabled) {
@@ -68,7 +68,7 @@ export const Button = styled(_Button)`
     css`
       width: 100%;
       display: block;
-    `}
+    `};
 
   ${props =>
     props.large &&
@@ -77,9 +77,9 @@ export const Button = styled(_Button)`
       font-size: 20px;
       line-height: 1.5;
       border-radius: 5px;
-    `}
+    `};
 
-    ${Spinner} {
-      margin-right: 10px;
-    }
+  ${Spinner} {
+    margin-right: 10px;
+  }
 `;

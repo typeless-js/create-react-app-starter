@@ -26,12 +26,12 @@ if (process.env.NODE_ENV !== 'production') {
   middlewares.push(
     createLogger({
       collapsed: true,
-    }),
+    })
   );
 }
 export const store = createStore(
   rootReducer.getReducer(),
-  applyMiddleware(...middlewares),
+  applyMiddleware(...middlewares)
 );
 
 const render = () => {
@@ -45,7 +45,7 @@ const render = () => {
     >
       <App />
     </TypelessProvider>,
-    MOUNT_NODE,
+    MOUNT_NODE
   );
 };
 

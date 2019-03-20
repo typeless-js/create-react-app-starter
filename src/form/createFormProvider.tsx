@@ -18,7 +18,7 @@ export function createFormProvider<
         Object.assign({}, form, {
           actions: { blur, change },
         }),
-      [form],
+      [form]
     );
 
     return (

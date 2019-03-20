@@ -19,7 +19,7 @@ export const epic = createEpic(MODULE)
         return history.listen(location => {
           subscriber.next(RouterActions.locationChange(location));
         });
-      }),
+      })
   )
   .on(RouterActions.push, location => {
     history.push(location as any);
@@ -35,7 +35,7 @@ export const reducer = createReducer(initialState).on(
   (state, payload) => {
     state.prevLocation = state.location;
     state.location = payload;
-  },
+  }
 );
 
 // --- Module ---
