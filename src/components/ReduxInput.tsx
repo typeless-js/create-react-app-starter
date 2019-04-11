@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FormContext } from 'src/form';
+import { FormContext } from 'src/form2';
 import { FormInput, FormInputProps } from './FormInput';
 
 interface ReduxFormControlProps extends FormInputProps {

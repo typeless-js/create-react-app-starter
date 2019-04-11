@@ -1,12 +1,18 @@
-import { createForm } from 'src/form';
+import { createForm } from 'src/form2';
+import { LoginFormSymbol } from './symbol';
 
-export const {
-  actions: LoginFormActions,
-  useForm: useLoginForm,
-  FormProvider: LoginFormProvider,
-} = createForm({
-  name: 'login',
-  reducerPath: ['loginForm'],
+interface LoginForm {
+  username: string;
+  password: string;
+}
+
+export const [
+  useLoginForm,
+  LoginFormActions,
+  getLoginFormState,
+  LoginFormProvider,
+] = createForm<LoginForm>({
+  symbol: LoginFormSymbol,
   validator: (errors, values) => {
     if (!values.username) {
       errors.username = 'Please enter username!';

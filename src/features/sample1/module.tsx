@@ -1,25 +1,18 @@
 import React from 'react';
-import { createEpic, createReducer, useModule } from 'typeless';
 import { Sample1View } from './components/Sample1View';
-import { MODULE, Sample1Actions, Sample1State } from './interface';
-
-// --- Epic ---
-export const epic = createEpic(MODULE);
+import { handle, Sample1State } from './interface';
 
 // --- Reducer ---
 const initialState: Sample1State = {
   foo: 'bar',
 };
 
-export const reducer = createReducer(initialState);
+handle.reducer(initialState);
+
+const useSample1Module = () => handle();
 
 // --- Module ---
 export default () => {
-  useModule({
-    epic,
-    reducer,
-    reducerPath: ['sample1'],
-    actions: Sample1Actions,
-  });
+  useSample1Module();
   return <Sample1View />;
 };

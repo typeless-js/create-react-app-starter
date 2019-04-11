@@ -1,12 +1,12 @@
 import * as Rx from 'src/rx';
 import { getUser } from 'src/services/API';
 import { clearAccessToken, getAccessToken } from 'src/services/Storage';
-import { createEpic, createReducer, useModule } from 'typeless';
-import { RouterActions } from '../router/interface';
-import { GlobalActions, GlobalState, MODULE } from './interface';
+import { RouterActions } from 'typeless-router';
+import { GlobalActions, GlobalState, handle } from './interface';
 
 // --- Epic ---
-export const epic = createEpic(MODULE)
+handle
+  .epic()
   .on(GlobalActions.$mounted, () => {
     if (getAccessToken()) {
       return getUser().pipe(Rx.map(GlobalActions.loggedIn));
@@ -24,7 +24,8 @@ const initialState: GlobalState = {
   user: null,
 };
 
-export const reducer = createReducer(initialState)
+handle
+  .reducer(initialState)
   .on(GlobalActions.loggedIn, (state, { user }) => {
     state.isLoaded = true;
     state.user = user;
@@ -33,11 +34,4 @@ export const reducer = createReducer(initialState)
     state.user = null;
   });
 
-// --- Module ---
-export const useGlobalModule = () =>
-  useModule({
-    epic,
-    reducer,
-    reducerPath: ['global'],
-    actions: GlobalActions,
-  });
+export const useGlobalModule = () => handle();

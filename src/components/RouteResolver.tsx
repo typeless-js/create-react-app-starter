@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as R from 'remeda';
-import { RouterActions, RouterLocation } from 'src/features/router/interface';
+import { getGlobalState } from 'src/features/global/interface';
 import { usePrevious } from 'src/hooks/usePrevious';
 import { RouteConfig } from 'src/types';
-import { useActions, useMappedState } from 'typeless';
+import { useActions } from 'typeless';
+import { getRouterState, RouterActions, RouterLocation } from 'typeless-router';
 
 // load dynamically all routes from all interfaces
 const req = require.context('../features', true, /interface.tsx?$/);
@@ -27,10 +28,8 @@ function getMatch(loc: RouterLocation | null, isLogged: boolean) {
 }
 
 export const RouteResolver = () => {
-  const { user, location } = useMappedState(state => ({
-    ...R.pick(state.global, ['isLoaded', 'user']),
-    ...R.pick(state.router, ['location']),
-  }));
+  const { user } = getGlobalState.useState();
+  const { location } = getRouterState.useState();
   const { push } = useActions(RouterActions);
   const [component, setComponent] = useState(<div />);
 

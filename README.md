@@ -3,7 +3,6 @@
 
 Starter based on [Create React App](https://github.com/facebook/create-react-app).  
 
-<!-- Markdown snippet -->
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/typeless-js/create-react-app-starter)
 
 ### Quick Start

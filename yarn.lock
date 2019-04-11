@@ -8246,11 +8246,6 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-react-hook@^3.1.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/redux-react-hook/-/redux-react-hook-3.2.1.tgz#41bc93bc09ebbe9e914aa0fa186a128fd3e8d0fb"
-  integrity sha512-xTXhFajTVeomc6GwTsTvUKMtv58511MY02bPSbKZGOuSO9+c3cW7lDybHlkwLU90kryX0cC+Vk/ukgJC4dXOPQ==
-
 redux@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
@@ -9623,18 +9618,22 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeless@0.0.18:
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/typeless/-/typeless-0.0.18.tgz#e345aa9e406512c61790a91dc81135f174a8bf66"
-  integrity sha512-7VhpF5BOt+t5QSatYUr2B8QSBBvAPmRWC8cZ4M5iSk15X1D8ccb8N70BeX5g6aOP9E4ep66S13N2Y7Bq4TkUMw==
+typeless-router@0.1.5-alpha.0:
+  version "0.1.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/typeless-router/-/typeless-router-0.1.5-alpha.0.tgz#2b39bfce3d3e76c602d3ab7a8131a840675358be"
+  integrity sha512-Sh3rkwJRbzzn8ssa5JkQNGAInmIbNI4k/WBhMWpZZYb/4Z0wPflz3Sbsxosbj0piZ/iOjluse40JumgiIMM2bA==
+
+typeless@0.1.5-alpha.0:
+  version "0.1.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/typeless/-/typeless-0.1.5-alpha.0.tgz#5b9a50c114e6e403fa5b9f22b70cdde5598bbc28"
+  integrity sha512-6ihrvBJxCSX+0oqo78Z/QRkg01YwP5VfWuNfQJgDh3lfR0DG4gPLs1pue5fhIz6m2I9l3oD8xi4eesBgSw3Eng==
   dependencies:
     immer "^1.8.0"
-    redux-react-hook "^3.1.0"
 
-typescript@^3.3.3333:
-  version "3.3.3333"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
-  integrity sha512-JjSKsAfuHBE/fB2oZ8NxtRTk5iGcg6hkYXMnZ3Wc+b2RSqejEqTaem11mHASMnFilHrax3sLK0GDzcJrekZYLw==
+typescript@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.3.tgz#0eb320e4ace9b10eadf5bc6103286b0f8b7c224f"
+  integrity sha512-FFgHdPt4T/duxx6Ndf7hwgMZZjZpB+U0nMNGVCYPq0rEzWKjEDobm4J6yb3CS7naZ0yURFqdw9Gwc7UOh/P9oQ==
 
 uglify-js@3.4.x, uglify-js@^3.1.4:
   version "3.4.10"

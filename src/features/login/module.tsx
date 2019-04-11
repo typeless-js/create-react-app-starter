@@ -2,25 +2,29 @@ import React from 'react';
 import * as Rx from 'src/rx';
 import { login } from 'src/services/API';
 import { setAccessToken } from 'src/services/Storage';
-import { batchUpdate, createEpic, createReducer, useModule } from 'typeless';
+import { RouterActions } from 'typeless-router';
 import { GlobalActions } from '../global/interface';
-import { RouterActions } from '../router/interface';
 import { LoginView } from './components/LoginView';
-import { LoginActions, LoginState, MODULE } from './interface';
-import { LoginFormActions, useLoginForm } from './login-form';
+import { handle, LoginActions, LoginState } from './interface';
+import {
+  getLoginFormState,
+  LoginFormActions,
+  useLoginForm,
+} from './login-form';
 
 // --- Epic ---
-export const epic = createEpic(MODULE)
+handle
+  .epic()
   .on(LoginActions.$mounted, () => LoginFormActions.reset())
-  .on(LoginFormActions.setSubmitSucceeded, (_, { getState }) => {
-    const { values } = getState().loginForm;
+  .on(LoginFormActions.setSubmitSucceeded, () => {
+    const { values } = getLoginFormState();
     return Rx.concatObs(
       Rx.of(LoginActions.setLoading(true)),
       Rx.of(LoginActions.setError('')),
       login(values.username, values.password).pipe(
-        Rx.map(({ user, token }) => {
+        Rx.mergeMap(({ user, token }) => {
           setAccessToken(token);
-          return batchUpdate([
+          return Rx.from([
             GlobalActions.loggedIn(user),
             RouterActions.push('/'),
           ]);
@@ -37,7 +41,8 @@ const initialState: LoginState = {
   error: '',
 };
 
-export const reducer = createReducer(initialState)
+handle
+  .reducer(initialState)
   .on(LoginActions.setLoading, (state, { isLoading }) => {
     state.isLoading = isLoading;
   })
@@ -45,14 +50,11 @@ export const reducer = createReducer(initialState)
     state.error = error;
   });
 
+const useLoginModule = () => handle();
+
 // --- Module ---
 export default () => {
-  useModule({
-    epic,
-    reducer,
-    reducerPath: ['login'],
-    actions: LoginActions,
-  });
+  useLoginModule();
   useLoginForm();
   return <LoginView />;
 };

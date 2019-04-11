@@ -1,13 +1,12 @@
 import React from 'react';
 import { DashboardSuspense } from 'src/components/DashboardSuspense';
 import { RouteConfig } from 'src/types';
-import { createActions } from 'typeless';
+import { createModule } from 'typeless';
+import { Sample2Symbol } from './symbol';
 
-// --- Constants ---
-export const MODULE = 'sample2';
-
-// --- Actions ---
-export const Sample2Actions = createActions(MODULE, {});
+export const [handle, getSample1State] = createModule(Sample2Symbol).withState<
+  Sample2State
+>();
 
 // --- Routing ---
 const ModuleLoader = React.lazy(() => import('./module'));
@@ -28,10 +27,4 @@ export const routeConfig: RouteConfig = {
 // --- Types ---
 export interface Sample2State {
   foo: string;
-}
-
-declare module 'typeless/types' {
-  export interface DefaultState {
-    sample2: Sample2State;
-  }
 }
