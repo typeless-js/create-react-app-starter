@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DefaultTypelessProvider, onHmr } from 'typeless';
+import { Hmr, Registry, startHmr, TypelessContext } from 'typeless';
 
 const MOUNT_NODE = document.getElementById('app');
 
@@ -8,14 +8,18 @@ if (!MOUNT_NODE) {
   throw new Error('<div id="app" /> not found');
 }
 
+const registry = new Registry();
+
 const render = () => {
   const App = require('./components/App').App;
   ReactDOM.unmountComponentAtNode(MOUNT_NODE);
   try {
     ReactDOM.render(
-      <DefaultTypelessProvider>
-        <App />
-      </DefaultTypelessProvider>,
+      <Hmr>
+        <TypelessContext.Provider value={{ registry }}>
+          <App />
+        </TypelessContext.Provider>
+      </Hmr>,
       MOUNT_NODE
     );
   } catch (e) {
@@ -27,7 +31,8 @@ const render = () => {
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    onHmr(render);
+    startHmr();
+    render();
   });
 }
 render();

@@ -9,6 +9,7 @@ export const [handle, LoginActions, getLoginState] = createModule(LoginSymbol)
     $mounted: null,
     setLoading: (isLoading: boolean) => ({ payload: { isLoading } }),
     setError: (error: string) => ({ payload: { error } }),
+    a: null,
   })
   .withState<LoginState>();
 

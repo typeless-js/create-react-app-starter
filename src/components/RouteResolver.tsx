@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as R from 'remeda';
 import { getGlobalState } from 'src/features/global/interface';
-import { usePrevious } from 'src/hooks/usePrevious';
 import { RouteConfig } from 'src/types';
 import { useActions } from 'typeless';
 import { getRouterState, RouterActions, RouterLocation } from 'typeless-router';
@@ -33,23 +32,13 @@ export const RouteResolver = () => {
   const { push } = useActions(RouterActions);
   const [component, setComponent] = useState(<div />);
 
-  const prevUser = usePrevious(user);
-
   useEffect(() => {
-    let match = getMatch(location, !!user);
+    const match = getMatch(location, !!user);
     if (match) {
       setComponent(match.component);
       return;
     }
-    if (!prevUser && user) {
-      // user is logging in
-      // keep rendering current route if not found
-      match = getMatch(location, !user);
-      if (match) {
-        setComponent(match.component);
-      }
-      return;
-    }
+
     // not found route
     // you can display 404 or redirect to default routes
     push(user ? '/' : '/login');

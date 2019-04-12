@@ -1,4 +1,4 @@
-import { createForm } from 'src/form2';
+import { createForm } from 'typeless-form';
 import { LoginFormSymbol } from './symbol';
 
 interface LoginForm {
