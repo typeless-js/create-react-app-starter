@@ -59,8 +59,10 @@ export interface FormResult<TData, TState> {
     ) => { payload: { field: keyof TData }; meta: { form: string } };
     change: (
       field: keyof TData,
+      // eslint-disable-next-line no-undef
       value: TData[typeof field]
     ) => {
+      // eslint-disable-next-line no-undef
       payload: { field: keyof TData; value: TData[typeof field] };
       meta: { form: string };
     };

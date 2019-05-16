@@ -54,6 +54,8 @@ export const RouteResolver = () => {
     // not found route
     // you can display 404 or redirect to default routes
     push(user ? '/' : '/login');
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, user]);
 
   return component;

@@ -3,15 +3,15 @@ import { RouterActions } from 'src/features/router/interface';
 import { useActions } from 'typeless';
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: any;
   //
 }
 
-export const Link = (props: LinkProps) => {
-  const { href, onClick } = props;
+export const Link = ({ href, onClick, children, ...others }: LinkProps) => {
   const { push } = useActions(RouterActions);
   return (
     <a
-      {...props}
+      {...others}
       onClick={e => {
         e.preventDefault();
         if (href) {
@@ -21,6 +21,8 @@ export const Link = (props: LinkProps) => {
           onClick(e);
         }
       }}
-    />
+    >
+      {children}
+    </a>
   );
 };
