@@ -18,6 +18,7 @@ export function createFormProvider<
         Object.assign({}, form, {
           actions: { blur, change },
         }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [form]
     );
 
