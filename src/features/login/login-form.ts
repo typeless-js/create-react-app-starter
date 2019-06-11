@@ -1,12 +1,18 @@
-import { createForm } from 'src/form';
+import { createForm } from 'typeless-form';
+import { LoginFormSymbol } from './symbol';
 
-export const {
-  actions: LoginFormActions,
-  useForm: useLoginForm,
-  FormProvider: LoginFormProvider,
-} = createForm({
-  name: 'login',
-  reducerPath: ['loginForm'],
+export interface LoginFormValues {
+  username: string;
+  password: string;
+}
+
+export const [
+  useLoginForm,
+  LoginFormActions,
+  getLoginFormState,
+  LoginFormProvider,
+] = createForm<LoginFormValues>({
+  symbol: LoginFormSymbol,
   validator: (errors, values) => {
     if (!values.username) {
       errors.username = 'Please enter username!';

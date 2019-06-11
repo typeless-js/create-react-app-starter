@@ -1,17 +1,19 @@
 import * as Rx from 'src/rx';
 import { getUser } from 'src/services/API';
 import { clearAccessToken, getAccessToken } from 'src/services/Storage';
-import { createEpic, createReducer, useModule } from 'typeless';
-import { RouterActions } from '../router/interface';
-import { GlobalActions, GlobalState, MODULE } from './interface';
+import { GlobalActions, GlobalState, handle } from './interface';
+import { RouterActions } from 'typeless-router';
 
 // --- Epic ---
-export const epic = createEpic(MODULE)
+handle
+  .epic()
   .on(GlobalActions.$mounted, () => {
     if (getAccessToken()) {
       return getUser().pipe(Rx.map(GlobalActions.loggedIn));
     }
-    return GlobalActions.loggedIn(null);
+    // TODO bug in typeless 1.0.0
+    // doesn't invoke re-render
+    return Rx.of(GlobalActions.loggedIn(null)).pipe(Rx.delay(0));
   })
   .on(GlobalActions.logout, () => {
     clearAccessToken();
@@ -24,7 +26,8 @@ const initialState: GlobalState = {
   user: null,
 };
 
-export const reducer = createReducer(initialState)
+export const reducer = handle
+  .reducer(initialState)
   .on(GlobalActions.loggedIn, (state, { user }) => {
     state.isLoaded = true;
     state.user = user;
@@ -34,10 +37,4 @@ export const reducer = createReducer(initialState)
   });
 
 // --- Module ---
-export const useGlobalModule = () =>
-  useModule({
-    epic,
-    reducer,
-    reducerPath: ['global'],
-    actions: GlobalActions,
-  });
+export const useGlobalModule = handle;

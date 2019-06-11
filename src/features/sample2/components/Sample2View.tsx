@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dashboard } from 'src/components/Dashboard';
-import { Link } from 'src/components/Link';
+import { Link } from 'typeless-router';
 
 export const Sample2View = () => {
   return (

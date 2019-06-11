@@ -1,10 +1,9 @@
 import React from 'react';
-import * as R from 'remeda';
 import { useGlobalModule } from 'src/features/global/module';
-import { useRouterModule } from 'src/features/router/module';
 import { createGlobalStyle } from 'styled-components';
-import { useMappedState } from 'typeless';
 import { RouteResolver } from './RouteResolver';
+import { useRouterModule } from 'src/features/router';
+import { getGlobalState } from 'src/features/global/interface';
 
 const GlobalStyle = createGlobalStyle`
   *, ::after, ::before {
@@ -29,9 +28,8 @@ const GlobalStyle = createGlobalStyle`
 export const App = () => {
   useRouterModule();
   useGlobalModule();
-  const { isLoaded } = useMappedState(state =>
-    R.pick(state.global, ['isLoaded'])
-  );
+  const { isLoaded } = getGlobalState.useState();
+
   return (
     <>
       {isLoaded && <RouteResolver />}
