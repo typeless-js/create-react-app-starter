@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export interface FormInputProps
+export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   label: string;
@@ -13,7 +13,7 @@ const Label = styled.label`
   margin-bottom: 8px;
 `;
 
-const Input = styled.input`
+const StyledInput = styled.input`
   display: block;
   width: 100%;
   padding: 10px;
@@ -43,24 +43,24 @@ const Error = styled.div`
   color: #dc3545;
 `;
 
-const _FormInput = (props: FormInputProps) => {
+const _Input = (props: InputProps) => {
   const { className, label, error, ...rest } = props;
   return (
     <div className={className}>
       <Label>{label}</Label>
-      <Input {...rest} />
+      <StyledInput {...rest} />
       {error && <Error>{error}</Error>}
     </div>
   );
 };
 
-export const FormInput = styled(_FormInput)`
+export const Input = styled(_Input)`
   width: 100%;
   display: block;
   ${props =>
     props.error &&
     css`
-      ${Input} {
+      ${StyledInput} {
         border-color: #dc3545;
         &:focus {
           box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
