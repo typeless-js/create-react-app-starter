@@ -1,13 +1,14 @@
 import React from 'react';
 import { DefaultSuspense } from 'src/components/DefaultSuspense';
 import { RouteConfig } from 'src/types';
-import { createActions } from 'typeless';
+import { createModule } from 'typeless';
+import { {{pascalCase name}}Symbol } from './symbol';
 
-// --- Constants ---
-export const MODULE = '{{name}}';
 
 // --- Actions ---
-export const {{pascalCase name}}Actions = createActions(MODULE, {});
+export const [handle, {{pascalCase name}}Actions, get{{pascalCase name}}State] = createModule({{pascalCase name}}Symbol)
+  .withActions({})
+  .withState<{{pascalCase name}}State >();
 
 // --- Routing ---
 const ModuleLoader = React.lazy(() => import('./module'));
@@ -28,10 +29,4 @@ export const routeConfig: RouteConfig = {
 // --- Types ---
 export interface {{pascalCase name}}State {
   foo: string;
-}
-
-declare module 'typeless/types' {
-  export interface DefaultState {
-    {{name}}: {{pascalCase name}}State;
-  }
 }
