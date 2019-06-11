@@ -17,9 +17,9 @@
     "remeda": "^0.0.11",
     "rxjs": "6.2.2",
     "styled-components": "^4.1.3",
-    "typeless": "^1.0.0",
-    "typeless-form": "^1.0.0",
-    "typeless-router": "^1.0.0",
+    "typeless": "^1.1.0",
+    "typeless-form": "^1.1.0",
+    "typeless-router": "^1.1.0",
     "typescript": "^3.5.1"
   },
   "scripts": {
