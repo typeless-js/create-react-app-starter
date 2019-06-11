@@ -11,7 +11,9 @@ handle
     if (getAccessToken()) {
       return getUser().pipe(Rx.map(GlobalActions.loggedIn));
     }
-    return GlobalActions.loggedIn(null);
+    // TODO bug in typeless 1.0.0
+    // doesn't invoke re-render
+    return Rx.of(GlobalActions.loggedIn(null)).pipe(Rx.delay(0));
   })
   .on(GlobalActions.logout, () => {
     clearAccessToken();
